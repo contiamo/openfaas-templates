@@ -1,24 +1,13 @@
 #!/usr/bin/env python
-from http.server import BaseHTTPRequestHandler, HTTPServer
+
 from handler import handler
+from flask import Flask, request
+app = Flask(__name__)
 
-class S(BaseHTTPRequestHandler):
-    def _set_headers(self):
-        self.send_response(200)
-        self.end_headers()
+@app.route('/', methods=['POST'])
+def main():
+    print(request)
+    data = request.get_data()
+    return handler(data)
 
-    def do_POST(self):
-        self._set_headers()
-        length = int(self.headers['content-length'])
-        data = self.rfile.read(length)
-        self.wfile.write(handler(data))
-
-def run(server_class=HTTPServer, handler_class=S, port=80):
-    server_address = ('', port)
-    httpd = server_class(server_address, handler_class)
-    print('Starting http server...')
-    httpd.serve_forever()
-
-if __name__ == "__main__":
-    print('starting...')
-    run(port=8080)
+app.run(host='0.0.0.0', port=8080)
