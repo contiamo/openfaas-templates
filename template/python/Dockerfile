@@ -1,7 +1,8 @@
-FROM alpine
+FROM python:3-slim
 
-RUN apk --no-cache add python3
+RUN pip install flask
+RUN touch /tmp/.lock
 
-COPY main.py handler.py /app/
+COPY *.py /
 
-CMD ["python3", "/app/main.py"]
+CMD ["python3", "/main.py"]
