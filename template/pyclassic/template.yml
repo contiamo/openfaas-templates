@@ -1,0 +1,2 @@
+language: pyclassic
+fprocess: python3 main.py
