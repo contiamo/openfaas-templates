@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:3.6-slim
 
 # Alternatively use ADD https:// (which will not be cached by Docker builder)
 RUN apt-get update && apt-get install -y --no-install-recommends \
