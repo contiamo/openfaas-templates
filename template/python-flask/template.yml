@@ -1,2 +1,2 @@
-language: python
-fprocess: python3 index.py
+language: python-flask
+fprocess: python index.py
