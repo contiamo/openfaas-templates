@@ -1,0 +1,2 @@
+language: python-flask
+fprocess: python index.py
