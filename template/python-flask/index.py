@@ -13,7 +13,7 @@ def main_route(path):
         ret = handler.handle(request.get_data().decode('utf-8'))
         return ret
     except Exception as e:
-        return ' '.join(e.args)
+        return "Error in main_route: {}".format(''.join(e.args))
 
 
 if __name__ == '__main__':
