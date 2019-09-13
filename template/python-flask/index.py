@@ -9,8 +9,11 @@ app = Flask(__name__)
 @app.route("/", defaults={"path": ""}, methods=["POST", "GET"])
 @app.route("/<path:path>", methods=["POST", "GET"])
 def main_route(path):
-    ret = handler.handle(request.get_data().decode('utf-8'))
-    return ret
+    try:
+        ret = handler.handle(request.get_data().decode('utf-8'))
+        return ret
+    except Exception as e:
+        return "Error in main_route: {}".format(''.join(e.args))
 
 
 if __name__ == '__main__':
